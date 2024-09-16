@@ -96,7 +96,7 @@ docker run -d -p 443:443 -p 9390:9390 --name openvas mikesplain/openvas
 We now support volumes. Simply mount your data directory to `/var/lib/openvas/mgr/`:
 ```
 mkdir data
-docker run -d -p 443:443 -v $(pwd)/data:/var/lib/openvas/mgr/ --name openvas Hacker-Boy-15/openvas-docker
+docker run -d -p 443:443 -v $(pwd)/data:/var/lib/openvas/mgr/ --name openvas mikesplain/openvas
 ```
 Note, your local directory must exist prior to running.
 
