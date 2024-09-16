@@ -1,10 +1,10 @@
-NOTE: You might have to reinstall Docker and OpenVAS with each reboot.
+**NOTE: You might have to reinstall Docker and OpenVAS with each reboot.**
 
 If you would like an SH script, you can use the following code and save it as an SH file that you run in Terminal.
 
-#! /bin/bash
+#! **/bin/bash**
 
-$ sudo apt-get update 
+$ **sudo apt-get update**
 
 **1. Add your user to the Docker group**
 
@@ -12,27 +12,27 @@ To allow non-root users to run Docker commands, you can add your user to the Doc
 
 Add your user to the Docker group:
 
-$ sudo usermod -aG docker $USER
+$ **sudo usermod -aG docker $USER**
 
 After adding the user to the group, log out and log back in for the changes to take effect. Alternatively, you can run:
 
-$ newgrp docker
+$ **newgrp docker**
 
 **2. Check Docker permissions on the socket**
 
 Ensure the permissions on /var/run/docker.sock allow access to the Docker group. You can adjust the permissions using:
 
-$ sudo chmod 666 /var/run/docker.sock
+$ **sudo chmod 666 /var/run/docker.sock**
 
 3. **Verify that the Docker service is running**
 
 Ensure that Docker is running properly:
 
-$ sudo systemctl start docker
+$ **sudo systemctl start docker**
 
 Check the status of Docker to confirm it's active:
 
-$ sudo systemctl status docker
+$ **sudo systemctl status docker**
 
 **“Uninstalling Docker.io”**
 
