@@ -3,18 +3,30 @@ NOTE: You might have to reinstall Docker and OpenVAS with each reboot.
 If you would like an SH script, you can use the following code and save it as an SH file that you run in Terminal.
 
 #! /bin/bash
-echo “Uninstalling Docker.io”
+
+**“Uninstalling Docker.io”**
+
 sudo apt remove --purge docker.io -y
+
 sudo rm -rf /etc/docker
+
 sudo apt autoremove -y
-echo "Reinstalling Docker.io"
+
+**"Reinstalling Docker.io"**
+
 sudo apt install docker.io -y
-echo "Installing OpenVAS container"
+
+**"Installing OpenVAS container"**
+
 docker run -d -p 443:443 --name openvas Hacker-Boy-15/openvas-docker
-echo "OpenVas Container Installed."
-echo "Open with https://127.0.0.1"
-echo "User is admin."
-echo "Password is admin."
+
+**"OpenVas Container Installed."**
+
+**"Open with https://127.0.0.1"**
+
+**"User is admin."**
+
+**"Password is admin."**
 
 
 
