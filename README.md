@@ -1,3 +1,22 @@
+NOTE: You might have to reinstall Docker and OpenVAS with each reboot.
+
+If you would like an SH script, you can use the following code and save it as an SH file that you run in Terminal.
+
+#! /bin/bash
+echo “Uninstalling Docker.io”
+sudo apt remove --purge docker.io -y
+sudo rm -rf /etc/docker
+sudo apt autoremove -y
+echo "Reinstalling Docker.io"
+sudo apt install docker.io -y
+echo "Installing OpenVAS container"
+docker run -d -p 443:443 --name openvas Hacker-Boy-15/openvas-docker
+echo "OpenVas Container Installed."
+echo "Open with https://127.0.0.1"
+echo "User is admin."
+echo "Password is admin."
+
+
 
 Please reference the [Greenbone Documentation](https://greenbone.github.io/docs/latest/) on how to utilize their [containers](https://hub.docker.com/u/greenbone). 
 
@@ -20,9 +39,9 @@ Simply run:
 
 ```
 # latest (9)
-docker run -d -p 443:443 --name openvas mikesplain/openvas
+docker run -d -p 443:443 --name openvas Hacker-Boy-15/openvas-docker
 # 9
-docker run -d -p 443:443 --name openvas mikesplain/openvas:9
+docker run -d -p 443:443 --name openvas Hacker-Boy-15/openvas-docker:9
 ```
 
 This will grab the container from the docker registry and start it up.  Openvas startup can take some time (4-5 minutes while NVT's are scanned and databases rebuilt), so be patient.  Once you see a `It seems like your OpenVAS-9 installation is OK.` process in the logs, the web ui is good to go.  Goto `https://<machinename>`
