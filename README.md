@@ -20,7 +20,7 @@ sudo apt install docker.io -y
 
 **"Installing OpenVAS container"**
 
-docker run -d -p 443:443 --name openvas Hacker-Boy-15/openvas-docker
+docker run -d -p 443:443 --name openvas mikesplain/openvas
 
 **"OpenVas Container Installed."**
 
@@ -53,9 +53,9 @@ Simply run:
 
 ```
 # latest (9)
-docker run -d -p 443:443 --name openvas Hacker-Boy-15/openvas-docker
+docker run -d -p 443:443 --name openvas mikesplain/openvas
 # 9
-docker run -d -p 443:443 --name openvas Hacker-Boy-15/openvas-docker:9
+docker run -d -p 443:443 --name openvas mikesplain/openvas:9
 ```
 
 This will grab the container from the docker registry and start it up.  Openvas startup can take some time (4-5 minutes while NVT's are scanned and databases rebuilt), so be patient.  Once you see a `It seems like your OpenVAS-9 installation is OK.` process in the logs, the web ui is good to go.  Goto `https://<machinename>`
@@ -83,13 +83,13 @@ docker exec -it openvas bash
 By default, the system only allows connections for the hostname "openvas".  To allow access using a custom DNS name, you must use this command:
 
 ```
-docker run -d -p 443:443 -e PUBLIC_HOSTNAME=myopenvas.example.org --name openvas Hacker-Boy-15/openvas-docker
+docker run -d -p 443:443 -e PUBLIC_HOSTNAME=myopenvas.example.org --name openvas mikesplain/openvas
 ```
 
 #### OpenVAS Manager
 To use OpenVAS Manager, add port `9390` to you docker run command:
 ```
-docker run -d -p 443:443 -p 9390:9390 --name openvas Hacker-Boy-15/openvas-docker
+docker run -d -p 443:443 -p 9390:9390 --name openvas mikesplain/openvas
 ```
 
 #### Volume Support
@@ -103,7 +103,7 @@ Note, your local directory must exist prior to running.
 #### Set Admin Password
 The admin password can be changed by specifying a password at runtime using the env variable `OV_PASSWORD`:
 ```
-docker run -d -p 443:443 -e OV_PASSWORD=securepassword41 --name openvas Hacker-Boy-15/openvas-docker
+docker run -d -p 443:443 -e OV_PASSWORD=securepassword41 --name openvas mikesplain/openvas
 ```
 #### Update NVTs
 Occasionally you'll need to update NVTs. We update the container about once a week but you can update your container by execing into the container and running a few commands:
@@ -141,13 +141,13 @@ To run:
 #### LDAP Support (experimental)
 Openvas do not support full ldap integration but only per-user authentication. A workaround is in place here by syncing ldap admin user(defined by `LDAP_ADMIN_FILTER `) with openvas admin users everytime the app start up.  To use this, just need to specify the required ldap env variables:
 ```
-docker run -d -p 443:443 -p 9390:9390 --name openvas -e LDAP_HOST=your.ldap.host -e LDAP_BIND_DN=uid=binduid,dc=company,dc=com -e LDAP_BASE_DN=cn=accounts,dc=company,dc=com -e LDAP_AUTH_DN=uid=%s,cn=users,cn=accounts,dc=company,dc=com -e LDAP_ADMIN_FILTER=memberOf=cn=admins,cn=groups,cn=accounts,dc=company,dc=com -e LDAP_PASSWORD=password -e OV_PASSWORD=admin Hacker-Boy-15/openvas-docker 
+docker run -d -p 443:443 -p 9390:9390 --name openvas -e LDAP_HOST=your.ldap.host -e LDAP_BIND_DN=uid=binduid,dc=company,dc=com -e LDAP_BASE_DN=cn=accounts,dc=company,dc=com -e LDAP_AUTH_DN=uid=%s,cn=users,cn=accounts,dc=company,dc=com -e LDAP_ADMIN_FILTER=memberOf=cn=admins,cn=groups,cn=accounts,dc=company,dc=com -e LDAP_PASSWORD=password -e OV_PASSWORD=admin mikesplain/openvas 
 ```
 
 #### Email Support
 To configure the postfix server, provide the following env variables at runtime: `OV_SMTP_HOSTNAME`, `OV_SMTP_PORT`, `OV_SMTP_USERNAME`, `OV_SMTP_KEY`
 ```
-docker run -d -p 443:443 -e OV_SMTP_HOSTNAME=smtp.example.com -e OV_SMTP_PORT=587 -e OV_SMTP_USERNAME=username@example.com -e OV_SMTP_KEY=g0bBl3de3Go0k --name openvas Hacker-Boy-15/openvas-docker
+docker run -d -p 443:443 -e OV_SMTP_HOSTNAME=smtp.example.com -e OV_SMTP_PORT=587 -e OV_SMTP_USERNAME=username@example.com -e OV_SMTP_KEY=g0bBl3de3Go0k --name openvas mikesplain/openvas
 ```
 
 
