@@ -4,6 +4,8 @@ If you would like an SH script, you can use the following code and save it as an
 
 #! /bin/bash
 
+sudo apt-get update 
+
 **“Uninstalling Docker.io”**
 
 sudo apt remove --purge docker.io -y
