@@ -53,13 +53,17 @@ $ docker run -d -p 443:443 --name openvas mikesplain/openvas
 **"Installing OpenVAS container via podman"**
 
 sudo apt install podman
+
 sudo touch /etc/containers/nodocker
+
 sudo nano /etc/containers/registries.conf
 
 **Add the following line to registries.conf:**
 
 paste the following on a new line:
+
 unqualified-search-registries = ["docker.io"]
+
 Ctlr+S and then Ctrl+X
 
 **Run:** docker run -d -p 443:443 --name openvas mikesplain/openvas
@@ -67,7 +71,9 @@ Ctlr+S and then Ctrl+X
 **To remove existing containers** 
 
 podman stop openvas
+
 podman rm openvas
+
 an then **run** docker run -d -p 443:443 --name openvas mikesplain/openvas
 
 **"OpenVas Container Installed."**
